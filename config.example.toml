@@ -1,0 +1,15 @@
+[plugin_runtime]
+enabled = true
+auto_start = false
+
+[mucage]
+# 方式一（推荐）：Python 包装器
+mcp_command = "python"
+mcp_args = ["C:\\path\\to\\MucageLedger\\mucage_mcp.py"]
+
+# 方式二：直接启动 exe
+# mcp_command = "C:\\path\\to\\MucageLedger\\MucageLedger.exe"
+# mcp_args = ["--mcp"]
+
+# 单次 MCP 请求超时（秒），默认 30，最大 300。
+request_timeout = 30

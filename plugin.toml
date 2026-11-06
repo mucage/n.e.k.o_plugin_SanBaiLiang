@@ -1,0 +1,22 @@
+[plugin]
+id = "mucage_ledger"
+name = "此地无银三百两账本"
+description = "通过本机「此地无银三百两」MCP 服务查询余额、记账、统计与导入导出账本。"
+short_description = "Read and write the local MucageLedger bookkeeping app through its MCP service."
+keywords = ["账本", "记账", "余额", "支出", "收入", "ledger", "Mucage"]
+version = "0.1.0"
+type = "plugin"
+entry = "plugin.plugins.mucage_ledger:MucageLedgerPlugin"
+
+[plugin.sdk]
+recommended = ">=0.1.0,<0.2.0"
+supported = ">=0.1.0,<0.3.0"
+
+[mucage]
+# 方式一（推荐）：Python 包装器。把下面的路径改成你自己的 mucage_mcp.py。
+mcp_command = "python"
+mcp_args = ["C:\\path\\to\\MucageLedger\\mucage_mcp.py"]
+# 方式二：直接启动 exe。取消下面两行注释并注释掉上面的两行。
+# mcp_command = "C:\\path\\to\\MucageLedger\\MucageLedger.exe"
+# mcp_args = ["--mcp"]
+request_timeout = 30
