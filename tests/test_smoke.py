@@ -6,5 +6,5 @@ def test_plugin_manifest_exists() -> None:
     manifest = root / "plugin.toml"
     assert manifest.is_file()
     text = manifest.read_text(encoding="utf-8")
-    assert 'id = "mucage_ledger"' in text
-    assert 'entry = "plugin.plugins.mucage_ledger:MucageLedgerPlugin"' in text
+    assert 'id = "sanbailiang"' in text
+    assert 'entry = "plugin.plugins.sanbailiang:SanbailiangPlugin"' in text

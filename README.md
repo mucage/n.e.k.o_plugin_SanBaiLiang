@@ -1,11 +1,14 @@
-# 此地无银三百两账本（mucage_ledger）
+# 此地无银三百两账本（sanbailiang）
 
 让 Project N.E.K.O.（猫娘计划）在对话中通过 `@llm_tool` 调用本机「此地无银三百两」账本的 MCP 服务。插件只负责与本机 `MucageLedger.exe --mcp` 通信，**不直接读写 `ledger.json`**，余额锚点、合并、删除墓碑等逻辑全部复用账本软件。
 
-- 插件 ID：`mucage_ledger`
-- 入口类：`plugin.plugins.mucage_ledger:MucageLedgerPlugin`
+- 仓库：https://github.com/mucage/n.e.k.o_plugin_SanBaiLiang
+- 插件 ID：`sanbailiang`（Market 要求全小写，`^[a-z][a-z0-9_]*$`）
+- 入口类：`plugin.plugins.sanbailiang:SanbailiangPlugin`
 - 依赖：仅 Python 标准库（`asyncio` / `subprocess` / `json`），不需要 `mcp` 等第三方包。
 - 通信：本机 stdio，每行一条 JSON-RPC 2.0 消息。
+
+> GitHub 仓库名 `n.e.k.o_plugin_SanBaiLiang` 与插件 ID `sanbailiang` 在大小写不敏感比较下匹配（`n.e.k.o_plugin_sanbailiang`）。
 
 ## 提供的工具
 
@@ -26,7 +29,7 @@
 
 ## 安装
 
-1. 将整个 `mucage_ledger/` 目录放入 N.E.K.O 源码的 `plugin/plugins/` 下（或在插件中心安装后找到它的安装目录）。
+1. 将整个 `sanbailiang/` 目录放入 N.E.K.O 源码的 `plugin/plugins/` 下（或在插件中心安装后找到它的安装目录）。
 2. 编辑该目录中的 `plugin.toml`，把 `[mucage]` 段改成你自己的真实路径（见下一节）。
 3. 启动 N.E.K.O，打开插件面板，刷新插件列表并启动「此地无银三百两账本」。
 4. 在插件管理器执行 `mucage_status`，确认 `connected: true` 且能看到 13 个 MCP 工具。
@@ -93,7 +96,7 @@ mcp_args = ["C:/path/to/MucageLedger/mucage_mcp.py"]
 ## 在猫娘计划里启用并验证
 
 1. 确认账本软件已安装、能正常打开，并已关闭桌面窗口。
-2. 启动 N.E.K.O，在插件面板启动本插件；日志里应出现 `mucage_ledger 已加载`。
+2. 启动 N.E.K.O，在插件面板启动本插件；日志里应出现 `sanbailiang 已加载`。
 3. 执行 `mucage_status`，确认：
    - `configured: true`
    - `connected: true`
@@ -122,7 +125,7 @@ mcp_args = ["C:/path/to/MucageLedger/mucage_mcp.py"]
 ```powershell
 $env:MUCAGE_LEDGER_EXE = "C:\path\to\MucageLedger\MucageLedger.exe"
 
-# 在插件根目录（mucage_ledger/）运行
+# 在插件根目录（sanbailiang/）运行
 uv run --no-project --with pytest python -m pytest tests -q
 ```
 
@@ -142,7 +145,7 @@ uv run --no-project --with pytest python -m pytest tests -q
 
 ```bash
 # 在 N.E.K.O 源码根目录
-uv run neko-plugin check mucage_ledger
+uv run neko-plugin check sanbailiang
 ```
 
 ## 仓库与隐私

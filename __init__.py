@@ -36,7 +36,7 @@ _DEFAULT_TIMEOUT = 30.0
 
 
 @neko_plugin
-class MucageLedgerPlugin(NekoPluginBase):
+class SanbailiangPlugin(NekoPluginBase):
     """让猫娘在对话中查询和操作本机「此地无银三百两」账本。"""
 
     def __init__(self, ctx: Any):
@@ -53,13 +53,13 @@ class MucageLedgerPlugin(NekoPluginBase):
     @lifecycle(id="startup")
     async def on_startup(self, **_):
         await self._reload_config()
-        self.logger.info("mucage_ledger 已加载；MCP 子进程将在首次工具调用时启动")
+        self.logger.info("sanbailiang 已加载；MCP 子进程将在首次工具调用时启动")
         return Ok({"status": "ready", "configured": self._client is not None})
 
     @lifecycle(id="shutdown")
     async def on_shutdown(self, **_):
         await self._close_client()
-        self.logger.info("mucage_ledger 已停止，MCP 子进程已清理")
+        self.logger.info("sanbailiang 已停止，MCP 子进程已清理")
         return Ok({"status": "stopped"})
 
     @lifecycle(id="reload")
@@ -117,7 +117,7 @@ class MucageLedgerPlugin(NekoPluginBase):
                 )
                 self._config_error = None
                 self.logger.info(
-                    f"mucage_ledger 配置已加载：command={command} "
+                    f"sanbailiang 配置已加载：command={command} "
                     f"args={len(args)} timeout={timeout:g}s"
                 )
             except Exception as exc:
@@ -125,7 +125,7 @@ class MucageLedgerPlugin(NekoPluginBase):
                 self._config_error = (
                     exc.user_message if isinstance(exc, McpError) else str(exc)
                 )
-                self.logger.warning(f"mucage_ledger 配置无效：{self._config_error}")
+                self.logger.warning(f"sanbailiang 配置无效：{self._config_error}")
 
     async def _close_client_locked(self) -> None:
         client = self._client
@@ -193,7 +193,7 @@ class MucageLedgerPlugin(NekoPluginBase):
             )
             return self._tool_error(exc.code, exc.user_message)
         except Exception as exc:  # pragma: no cover - defensive boundary
-            self.logger.exception(f"mucage_ledger 工具 {tool} 失败")
+            self.logger.exception(f"sanbailiang 工具 {tool} 失败")
             return self._tool_error("MUCAGE_INTERNAL", f"插件内部错误：{exc}")
 
     @staticmethod

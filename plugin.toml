@@ -1,12 +1,12 @@
 [plugin]
-id = "mucage_ledger"
+id = "sanbailiang"
 name = "此地无银三百两账本"
 description = "通过本机「此地无银三百两」MCP 服务查询余额、记账、统计与导入导出账本。"
 short_description = "Read and write the local MucageLedger bookkeeping app through its MCP service."
 keywords = ["账本", "记账", "余额", "支出", "收入", "ledger", "Mucage"]
 version = "0.1.0"
 type = "plugin"
-entry = "plugin.plugins.mucage_ledger:MucageLedgerPlugin"
+entry = "plugin.plugins.sanbailiang:SanbailiangPlugin"
 
 [plugin.sdk]
 recommended = ">=0.1.0,<0.2.0"

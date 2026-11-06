@@ -714,5 +714,5 @@ def _humanize_tool_error(text: str) -> str:
     return stripped[:800]
 
 
-module_logger = logging.getLogger("mucage_ledger.mcp")
+module_logger = logging.getLogger("sanbailiang.mcp")
 module_logger.addHandler(logging.NullHandler())
